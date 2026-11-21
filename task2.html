@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Pricing Cards</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f2ff;
+    padding: 35px 20px;
+    color: #29264a;
+}
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #77758e;
+    margin-bottom: 25px;
+}
+
+/* Billing Toggle */
+.billing {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px;
+    background: white;
+    border-radius: 30px;
+    margin-bottom: 35px;
+    box-shadow: 0 3px 12px #ddd;
+}
+
+.billing button {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.billing button.active {
+    background: #6558d3;
+    color: white;
+}
+
+/* Pricing Grid */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    text-align: left;
+}
+
+.card {
+    background: white;
+    padding: 28px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 330px;
+    box-shadow: 0 5px 18px rgba(60,50,120,0.08);
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(60,50,120,0.15);
+}
+
+.card h2 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.price {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 18px;
+    color: #5546bf;
+}
+
+.price span {
+    font-size: 14px;
+    color: #888;
+}
+
+.description {
+    color: #777;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.features {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+.features li {
+    padding: 9px 0;
+    border-bottom: 1px solid #eee;
+    color: #555;
+    font-size: 14px;
+}
+
+.card button {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #6558d3;
+    background: white;
+    color: #6558d3;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.card button:active {
+    transform: scale(0.96);
+}
+
+/* Featured Pro Card */
+.featured {
+    border: 2px solid #6558d3;
+    position: relative;
+    animation: glow 2s infinite alternate;
+}
+
+.featured button {
+    background: #6558d3;
+    color: white;
+}
+
+.tag {
+    display: inline-block;
+    background: #6558d3;
+    color: white;
+    padding: 6px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 5px 18px rgba(101,88,211,0.15);
+    }
+    to {
+        box-shadow: 0 5px 25px rgba(101,88,211,0.4);
+    }
+}
+
+/* Desktop */
+@media (min-width: 850px) {
+    .pricing-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Choose Your Plan</h1>
+    <p class="subtitle">
+        Simple pricing for everyone
+    </p>
+
+    <div class="billing">
+        <button class="active" onclick="setBilling('monthly', this)">
+            Monthly
+        </button>
+        <button onclick="setBilling('annual', this)">
+            Annual
+        </button>
+    </div>
+
+    <div class="pricing-grid">
+
+        <!-- Starter Plan -->
+        <div class="card">
+            <div>
+                <h2>Starter</h2>
+                <div class="price">
+                    Free
+                </div>
+                <p class="description">
+                    Perfect for beginners who want to get started.
+                </p>
+
+                <ul class="features">
+                    <li>✓ Basic features</li>
+                    <li>✓ 5 Projects</li>
+                    <li>✓ Community support</li>
+                </ul>
+            </div>
+
+            <button>Select Starter</button>
+        </div>
+
+        <!-- Pro Plan -->
+        <div class="card featured">
+            <div>
+                <span class="tag">POPULAR</span>
+                <h2>Pro Plan</h2>
+                <div class="price" id="proPrice">
+                    ₹799<span>/mo</span>
+                </div>
+
+                <p class="description">
+                    Great for individuals who need more features.
+                </p>
+
+                <ul class="features">
+                    <li>✓ Unlimited Projects</li>
+                    <li>✓ Priority Support</li>
+                    <li>✓ Advanced Tools</li>
+                </ul>
+            </div>
+
+            <button>Select Pro</button>
+        </div>
+
+        <!-- Team Plan -->
+        <div class="card">
+            <div>
+                <h2>Team Plan</h2>
+                <div class="price" id="teamPrice">
+                    ₹1,999<span>/mo</span>
+                </div>
+
+                <p class="description">
+                    Best for teams working together.
+                </p>
+
+                <ul class="features">
+                    <li>✓ Everything in Pro</li>
+                    <li>✓ Team Collaboration</li>
+                    <li>✓ Dedicated Support</li>
+                </ul>
+            </div>
+
+            <button>Select Team</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function setBilling(type, selectedButton) {
+
+    document.querySelectorAll(".billing button")
+    .forEach(button => button.classList.remove("active"));
+
+    selectedButton.classList.add("active");
+
+    if (type === "annual") {
+        document.getElementById("proPrice").innerHTML =
+        '₹599<span>/mo</span>';
+
+        document.getElementById("teamPrice").innerHTML =
+        '₹1,499<span>/mo</span>';
+    } else {
+        document.getElementById("proPrice").innerHTML =
+        '₹799<span>/mo</span>';
+
+        document.getElementById("teamPrice").innerHTML =
+        '₹1,999<span>/mo</span>';
+    }
+}
+</script>
+
+</body>
+</html>
